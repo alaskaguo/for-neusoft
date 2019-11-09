@@ -1,0 +1,36 @@
+import pandas as pd
+import numpy as np
+import os
+import seaborn as sns
+
+path = r"D:\myrearch\heartfailure"
+os.chdir(path)
+
+data_original = pd.read_excel('heart.xlsx',index_col=0,header=2)
+
+data_original.head()
+
+data_original.dropna(how = "all",inplace = True)
+
+data_original.dropna(how = "all",axis = 1,inplace = True)
+
+data_original.shape
+
+data_original.info()
+
+def sub_list(ls,content):
+    l = []
+    '''
+    再列表中查找包含指定字符串的元素，并返回新列表
+    ls:由字符串构成的列表或array   
+    content:指定的字符串列表   
+    '''
+    for word in ls:
+        for con in content:
+            if con in word:
+                l.append(word)
+    return l           
+
+BNP = sub_list(data_original.columns,["_BNP","心钠素（脑钠肽）"])
+
+data_original['bnp'] = data_original[BNP].max(axis=1)
