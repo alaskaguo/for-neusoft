@@ -1,9 +1,6 @@
 
 # coding: utf-8
 
-# In[227]:
-
-
 import pandas as pd
 import os
 from datetime import datetime
@@ -11,15 +8,9 @@ import time
 from dateutil.parser import parse
 
 
-# In[228]:
-
-
 path = r"D:\20200720"
 os.chdir(path)
 filelist = os.listdir(path)
-
-
-# In[229]:
 
 
 ## check the dimension of all df
@@ -28,13 +19,8 @@ for file in filelist:
     print(file,df.shape)
 
 
-# In[230]:
-
 
 colnames = pd.read_excel(r"D:\myresearch\data\columns_1.xlsx").iloc[:,0]
-
-
-# In[231]:
 
 
 ## 年龄列去掉文字，一岁一下按0岁处理
@@ -53,13 +39,7 @@ def intage(age):
     return currentage;
 
 
-# In[232]:
-
-
 df_total = pd.DataFrame()
-
-
-# In[233]:
 
 
 for file in filelist:
@@ -84,27 +64,6 @@ for file in filelist:
 
     df = df[colreserve]
     df_total = df_total.append(df)
-
-
-# In[ ]:
-
-
-set_time
-
-
-# In[ ]:
-
-
-df.shape
-
-
-# In[ ]:
-
-
-df_total.shape
-
-
-# In[234]:
 
 
 df_total.to_csv(r"D:\myresearch\data\data_total.csv",index=0,encoding="utf-8")
